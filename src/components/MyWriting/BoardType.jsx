@@ -11,8 +11,8 @@ import UnionChecked from 'assets/MyWrite/MyWriteUnionChecked.svg';
 import SuggestionUnchecked from 'assets/MyWrite/MyWriteSuggestionUnchecked.svg';
 import SuggestionChecked from 'assets/MyWrite/MyWriteSuggestionChecked.svg';
 
-import SchoolBoard from 'components/BoardWrite/BoardCampus';
-import CampBoard from 'components/BoardWrite/BoardBranch';
+import SchoolBoard from 'components/Board/BoardWrite/BoardCampus';
+import CampBoard from 'components/Board/BoardWrite/BoardBranch';
 
 import ResetImg from 'assets/MyWrite/Reset.svg';
 

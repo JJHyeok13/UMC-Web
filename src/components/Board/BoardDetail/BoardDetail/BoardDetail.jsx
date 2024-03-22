@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './BoardDetail.style';
+import styles from './styles';
 
 import Like from 'assets/Like.svg';
 import Comment from 'assets/Comment.svg';

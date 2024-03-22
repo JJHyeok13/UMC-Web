@@ -3,10 +3,10 @@ import axiosInstance from 'apis/setting';
 
 import styles from './styles';
 
-import BoardBox from 'components/BoardBox/BoardBox';
-import BoardDetail from 'components/BoardTextDetail/BoardDetail';
-import CommentBox from 'components/BoardTextDetail/CommentBox';
-import CommentWriteBox from 'components/BoardTextDetail/CommentWriteBox';
+import BoardBox from 'components/Board/BoardBox/BoardBox';
+import BoardDetail from 'components/Board/BoardDetail/BoardDetail/BoardDetail';
+import CommentBox from 'components/Board/BoardDetail/CommentBox/CommentBox';
+import CommentWriteBox from 'components/Board/BoardDetail/CommentWriteBox/CommentWriteBox';
 import { useNavigate } from 'react-router-dom';
 
 const BoardDetailPage = () => {

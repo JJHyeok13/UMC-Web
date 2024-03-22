@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
-import SearchBar from './BoardSearch';
-import BoardWriteButton from './BoardWriteButton';
+//import SearchBar from './BoardSearch';
 import Row from './Row';
 
 const TotalWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 100%;
+  margin-top: 50px;
 `;
 
 // 하나의 게시글을 감싸는 div
@@ -27,7 +27,7 @@ const BoardCell = styled.div`
 
   font-weight: bold;
 
-  width: 15%;
+  width: 10%;
 
   padding: 10px 40px;
 
@@ -40,8 +40,8 @@ const BoardCell = styled.div`
   /* 셀의 내용을 한 줄로 표시 -> 텍스트가 너무 길면 줄바꿈 X */
   white-space: nowrap;
 
-  &:first-child {
-    width: 55%;
+  &:nth-child(2) {
+    width: 60%;
   }
 `;
 
@@ -52,12 +52,26 @@ const BoardWriteButtonLayout = styled.div`
   padding-top: 24px;
 `;
 
-// 검색창 레이아웃 스타일링
-const BoardSearchLayout = styled.div`
+// 공지사항 핀설정 완료 버튼 레이아웃 스타일링
+const NoticePinButton = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 10%;
+
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
 `;
+
+// // 검색창 레이아웃 스타일링
+// const BoardSearchLayout = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
 const PageButtonWrapper = styled.div`
   display: flex;
@@ -77,30 +91,32 @@ const PageButton = styled.div`
   font-weight: ${({ selected }) => (selected ? 'bold' : '')};
 `;
 
-const BoardList = ({
-  host,
-  board,
-  boardData,
+const NoticeList = ({
+  noticeData,
   page,
   pageNumbers,
   handlePageChange,
-  keyword,
-  handleKeyword,
-  searchBoard,
+  //handleKeyword,
+  SetPinned,
 }) => {
   return (
     <TotalWrapper>
       <Container>
+        <BoardCell></BoardCell>
         <BoardCell>제목</BoardCell>
         <BoardCell>작성자</BoardCell>
         <BoardCell>작성일</BoardCell>
         <BoardCell>조회수</BoardCell>
       </Container>
 
-      <Row boardData={boardData} host={host} board={board} />
+      <Row noticeData={noticeData} SetPinned={SetPinned} />
+
+      {/* <BoardWriteButtonLayout>
+        <BoardWriteButton />
+      </BoardWriteButtonLayout> */}
 
       <BoardWriteButtonLayout>
-        <BoardWriteButton host={host} board={board} />
+        <NoticePinButton>등록</NoticePinButton>
       </BoardWriteButtonLayout>
 
       <PageButtonWrapper>
@@ -116,28 +132,20 @@ const BoardList = ({
         ))}
       </PageButtonWrapper>
 
-      <BoardSearchLayout>
-        <SearchBar
-          handleKeyword={handleKeyword}
-          searchBoard={searchBoard}
-          keyword={keyword}
-          page={page}
-        />
-      </BoardSearchLayout>
+      {/* <BoardSearchLayout>
+        <SearchBar handleKeyword={handleKeyword} />
+      </BoardSearchLayout> */}
     </TotalWrapper>
   );
 };
 
-BoardList.propTypes = {
-  host: PropTypes.string.isRequired,
-  board: PropTypes.string.isRequired,
-  boardData: PropTypes.array.isRequired,
+NoticeList.propTypes = {
+  noticeData: PropTypes.array.isRequired,
   page: PropTypes.number.isRequired,
   pageNumbers: PropTypes.array.isRequired,
   handlePageChange: PropTypes.func.isRequired,
-  keyword: PropTypes.string.isRequired,
   handleKeyword: PropTypes.func.isRequired,
-  searchBoard: PropTypes.func.isRequired,
+  SetPinned: PropTypes.func.isRequired,
 };
 
-export default BoardList;
+export default NoticeList;

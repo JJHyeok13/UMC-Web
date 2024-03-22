@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import AdminTitle from 'components/Management/NoticePin/AdminTitle';
+import AdminTitle from 'components/Management/ManagementTitle';
 
 import AdminTable from 'components/Management/NoticePin/NewAdminTable';
 

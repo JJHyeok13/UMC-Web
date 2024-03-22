@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import AdminTitle from 'components/Management/NoticePin/AdminTitle';
+import AdminTitle from 'components/Management/ManagementTitle';
 import ManagementType from 'components/Management/ManagementType';
 import NewAdminTable from 'components/Management/NoticePin/NewAdminTable';
 

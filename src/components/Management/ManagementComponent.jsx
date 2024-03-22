@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import BoardTitle from 'components/BoardWrite/BoardTitle.jsx';
-import BoardText from 'components/BoardWrite/BoardText.jsx';
+import BoardTitle from 'components/Board/BoardWrite/BoardTitle.jsx';
+import BoardText from 'components/Board/BoardWrite/BoardText.jsx';
 
-import ManagementButton from 'components/Management/Button';
-import StartendDate from 'components/Management/StartendDate';
-import Local from 'components/Management/SelectLocal';
-import Classify from 'components/Management/Classify';
+import ManagementButton from 'components/Management/NoticePin/Button.jsx';
+import StartendDate from 'components/Management/AddSchedule/StartendDate.jsx';
+import Local from 'components/Management/AddSchedule/SelectLocal.jsx';
+import Classify from 'components/Management/AddSchedule/Classify.jsx';
 
-import SearchChallenger from './SearchChallenger.jsx';
-import ChallengerType from './ChallengerType';
-import ChallengerPosition from './ChallengerPosition';
+import SearchChallenger from './ChangeChallenger/SearchChallenger.jsx';
+import ChallengerType from './ChangeChallenger/ChallengerType.jsx';
+import ChallengerPosition from './ChangeChallenger/ChallengerPosition.jsx';
 import styled from 'styled-components';
 
-import NewAdminTable from 'components/Management/NoticePin/NewAdminTable';
+import NoticeList from './NoticePin/NoticeList.jsx';
 
 const Container = styled.div`
   width: 100%;
@@ -36,17 +36,27 @@ const ButtonContainerChallenger = styled.div`
   margin-left: 16px;
 `;
 
-const TableLayout = styled(NewAdminTable)`
-  display: flex;
-  padding-bottom: 80px;
-`;
-
-const TypeComponent = ({ buttonStates }) => {
+const TypeComponent = ({
+  noticeData,
+  page,
+  pageNumbers,
+  handlePageChange,
+  handleKeyword,
+  buttonStates,
+  SetPinned,
+}) => {
   return (
     <Container>
       {buttonStates.setnoticeButton && (
         <>
-          <TableLayout />
+          <NoticeList
+            noticeData={noticeData}
+            page={page}
+            pageNumbers={pageNumbers}
+            handlePageChange={handlePageChange}
+            handleKeyword={handleKeyword}
+            SetPinned={SetPinned}
+          />
         </>
       )}
 
@@ -64,7 +74,7 @@ const TypeComponent = ({ buttonStates }) => {
       )}
       {buttonStates.challengerButton && (
         <>
-          <SearchChallenger />
+          <SearchChallenger handleKeyword={handleKeyword} />
           <ChallengerPosition />
           <ChallengerType />
           <ButtonContainerChallenger>
@@ -77,11 +87,18 @@ const TypeComponent = ({ buttonStates }) => {
 };
 
 TypeComponent.propTypes = {
+  noticeData: PropTypes.array.isRequired,
+  page: PropTypes.number.isRequired,
+  pageNumbers: PropTypes.array.isRequired,
+  handlePageChange: PropTypes.func.isRequired,
+  handleKeyword: PropTypes.func.isRequired,
+
   buttonStates: PropTypes.shape({
     setnoticeButton: PropTypes.bool,
     calenderButton: PropTypes.bool,
     challengerButton: PropTypes.bool,
   }).isRequired,
+  SetPinned: PropTypes.func.isRequired,
 };
 
 export default TypeComponent;

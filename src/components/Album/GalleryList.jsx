@@ -4,6 +4,15 @@ import styled from 'styled-components';
 
 import ViewIcon from 'assets/Album/View.svg';
 
+// 갤러리 리스트 컴포넌트 전체 컨테이너 스타일링
+const GalleryListContainer = styled.div`
+  /* 레이아웃 정렬 - 사진 아이템 레이아웃 정렬을 2차원적으로 구현하기 위해 Grid 사용 */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 34px 32px;
+`;
+
 // 갤러리 아이템 컴포넌트 스타일링
 const GalleryItem = styled.div`
   /* 레이아웃 정렬 */
@@ -137,35 +146,76 @@ const GalleryItemInfoDate = styled.div`
   color: #4b4b4b;
 `;
 
-const GalleryComponent = ({ albumData }) => {
+const PageButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+
+  padding-top: 30px;
+`;
+
+const PageButton = styled.div`
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: ${({ selected }) => (selected ? 'white' : 'transparent')};
+  border-radius: 10px;
+  color: ${({ selected }) => (selected ? '#000C76' : 'black')};
+  font-weight: ${({ selected }) => (selected ? 'bold' : '')};
+`;
+
+const GalleryComponent = ({
+  albumData,
+  page,
+  pageNumbers,
+  handlePageChange,
+}) => {
   return (
     <>
-      {albumData.map((data) => (
-        <GalleryItem key={data.albumId}>
-          <GalleryItemImg src={data.thumbnail} />
-          <GalleryItemViewCountWrapper>
-            <GalleryItemView>
-              <img src={ViewIcon} alt="view-icon" />
-              {data.hitCount}
-            </GalleryItemView>
-            <GalleryItemCount>{data.imageCnt}</GalleryItemCount>
-          </GalleryItemViewCountWrapper>
+      <GalleryListContainer>
+        {albumData.map((data) => (
+          <GalleryItem key={data.albumId}>
+            <GalleryItemImg src={data.thumbnail} />
+            <GalleryItemViewCountWrapper>
+              <GalleryItemView>
+                <img src={ViewIcon} alt="view-icon" />
+                {data.hitCount}
+              </GalleryItemView>
+              <GalleryItemCount>{data.imageCnt}</GalleryItemCount>
+            </GalleryItemViewCountWrapper>
 
-          <GalleryItemInfoWrapper>
-            <GalleryItemInfoTitle>{data.title}</GalleryItemInfoTitle>
-            <GalleryItemInfoAuthorDateLayout>
-              <GalleryItemInfoAuthor>{data.writer}</GalleryItemInfoAuthor>
-              <GalleryItemInfoDate>{data.createdAt}</GalleryItemInfoDate>
-            </GalleryItemInfoAuthorDateLayout>
-          </GalleryItemInfoWrapper>
-        </GalleryItem>
-      ))}
+            <GalleryItemInfoWrapper>
+              <GalleryItemInfoTitle>{data.title}</GalleryItemInfoTitle>
+              <GalleryItemInfoAuthorDateLayout>
+                <GalleryItemInfoAuthor>{data.writer}</GalleryItemInfoAuthor>
+                <GalleryItemInfoDate>{data.createdAt}</GalleryItemInfoDate>
+              </GalleryItemInfoAuthorDateLayout>
+            </GalleryItemInfoWrapper>
+          </GalleryItem>
+        ))}
+      </GalleryListContainer>
+
+      <PageButtonWrapper>
+        {pageNumbers.map((pageNumber) => (
+          <PageButton
+            key={pageNumber}
+            onClick={() => handlePageChange(pageNumber)}
+            selected={pageNumber === page + 1}
+            disabled={pageNumber === page}
+          >
+            {pageNumber}
+          </PageButton>
+        ))}
+      </PageButtonWrapper>
     </>
   );
 };
 
 GalleryComponent.propTypes = {
   albumData: PropTypes.array.isRequired,
+  page: PropTypes.number.isRequired,
+  pageNumbers: PropTypes.array.isRequired,
+  handlePageChange: PropTypes.func.isRequired,
 };
 
 export default GalleryComponent;

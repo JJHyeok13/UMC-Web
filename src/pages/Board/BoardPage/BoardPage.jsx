@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import axiosInstance from 'apis/setting';
 import { useLocation } from 'react-router-dom';
+import axiosInstance from 'apis/setting';
 
 import { getBoardData } from 'apis/Board/Board/board';
 
-import BoardTitle from 'components/BoardTitle/BoardTitle';
-import BoardBox from 'components/BoardBox/BoardBox';
-import BoardList from 'components/Board/BoardList';
+import BoardTitle from 'components/Board/BoardTitle/BoardTitle';
+import BoardBox from 'components/Board/BoardBox/BoardBox';
+import BoardList from 'components/Board/BoardList/BoardList';
 
 import styles from './styles';
 
@@ -69,8 +69,10 @@ const BoardPage = () => {
   return (
     <styles.BoardPageContainer>
       <BoardTitle />
+
       <styles.LowerContainer>
         <BoardBox />
+
         <BoardList
           host={host}
           board={board}

@@ -6,6 +6,12 @@ import SchoolIcon from 'assets/titleIcon/schoolIcon.svg';
 import BranchIcon from 'assets/titleIcon/branchIcon.svg';
 import UnionIcon from 'assets/titleIcon/unionIcon.svg';
 
+const BoardTitleLayout = styled.div`
+  display: flex;
+  padding: 0 0 0 40px;
+  width: 100%;
+`;
+
 // 게시판 제목 컴포넌트 스타일링
 const NoticeTitleContainer = styled.div`
   /* 레이아웃 정렬 */
@@ -13,7 +19,8 @@ const NoticeTitleContainer = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 0 8px;
-  padding-bottom: 72px;
+
+  margin-bottom: 72px;
 `;
 
 // 게시판 제목 아이콘 스타일링
@@ -62,13 +69,15 @@ const NoticeTitle = () => {
   }
 
   return (
-    <NoticeTitleContainer>
-      {icon}
-      <NoticeTitleWrapper>
-        <Title> 공지사항 </Title>
-        <Subtitle> 중요한 공지들을 알려드려요!</Subtitle>
-      </NoticeTitleWrapper>
-    </NoticeTitleContainer>
+    <BoardTitleLayout>
+      <NoticeTitleContainer>
+        {icon}
+        <NoticeTitleWrapper>
+          <Title> 공지사항 </Title>
+          <Subtitle> 중요한 공지들을 알려드려요!</Subtitle>
+        </NoticeTitleWrapper>
+      </NoticeTitleContainer>
+    </BoardTitleLayout>
   );
 };
 

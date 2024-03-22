@@ -2,9 +2,9 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { album_data } from 'components/Gallery/GalleryData';
-import GalleryDetailProfile from 'components/Gallery/GalleryDetail/GalleryDetailProfile';
-import GalleryListButton from 'components/Gallery/GalleryDetail/GalleryListButton';
+import { album_data } from 'components/Album/GalleryData';
+import GalleryDetailProfile from 'components/Album/GalleryDetail/GalleryDetailProfile';
+import GalleryListButton from 'components/Album/GalleryDetail/GalleryListButton';
 
 // 갤러리 상세 페이지 컨테이너
 const GalleryDetailPageContainer = styled.div`
@@ -17,7 +17,6 @@ const GalleryDetailPageContainer = styled.div`
   padding-bottom: 100px;
 
   /* 텍스트 스타일링 */
-  font-family: 'Pretendard';
   word-wrap: break-word;
 `;
 

@@ -23,7 +23,7 @@ const AdminTitleWrapper = styled.div`
 `;
 
 // 사용자 관리 페이지 제목 스타일링
-const AdminTitleMainStyle = styled.h1`
+const AdminTitleMainStyle = styled.div`
   /* 폰트 스타일링 */
   color: #7682f6;
   font-size: 34px;
@@ -32,7 +32,7 @@ const AdminTitleMainStyle = styled.h1`
 `;
 
 // 사용자 관리 페이지 부제목 스타일링
-const AdminTitleSub = styled.p`
+const AdminTitleSub = styled.div`
   /* 폰트 스타일링 */
   color: #9d9d9d;
   font-size: 18px;
@@ -44,9 +44,7 @@ const AdminTitleSub = styled.p`
 const AdminTitle = () => {
   return (
     <AdminTitleContainer>
-      <div className="admin-title-icon">
-        <img src={AdminTitleIcon} alt="admin-icon" />
-      </div>
+      <img src={AdminTitleIcon} alt="admin-icon" />
       <AdminTitleWrapper>
         <AdminTitleMainStyle>운영진 관리 페이지</AdminTitleMainStyle>
         <AdminTitleSub>반가워요 운영진님!</AdminTitleSub>

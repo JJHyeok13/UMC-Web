@@ -17,9 +17,9 @@ import Main from 'pages/Main/Main.jsx';
 import NoticePage from 'pages/Notice/NoticePage';
 
 import BoardPage from 'pages/Board/BoardPage/BoardPage';
-import BoardWrite from 'pages/Board/BoardWrite/BoardWrite';
+import BoardWrite from 'pages/Board/BoardWritePage/BoardWrite';
 import BoardDetailPage from 'pages/Board/DetailPage/BoardDetailPage';
-import ModifyBoard from 'pages/Board/BoardWrite/ModifyBoard';
+import ModifyBoard from 'pages/Board/BoardWritePage/ModifyBoard';
 
 import Management from 'pages/Management/Management';
 
@@ -34,7 +34,7 @@ import ModifyTIL from 'pages/TodayILearn/ModiftTIL';
 
 import TodoList from 'pages/ToDoList/TodoList';
 
-import AlbumPage from 'pages/Album/AlbumPage';
+import AlbumPage from 'pages/Album/AlbumPage/AlbumPage';
 import AlbumDetailPage from 'pages/Album/AlbumDetailPage';
 
 import ProfileSettingPage from 'pages/Setting/Profile/ProfileSettingPage';
