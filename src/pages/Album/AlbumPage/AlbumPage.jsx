@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import { total_Pages, album_data } from 'components/Album/GalleryData';
 
-import AlbumTitle from 'components/Album/GalleryTitle';
+import AlbumTitle from 'components/Album/AlbumTitle/GalleryTitle';
 import AlbumWriteButton from 'components/Album/GalleryWriteButton';
 import AlbumList from 'components/Album/GalleryList';
 

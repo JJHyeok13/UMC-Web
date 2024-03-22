@@ -4,6 +4,7 @@ import 'App.css';
 
 import MainLayout from 'layout/MainLayout';
 import BasicLayout from 'layout/BasicLayout';
+import AlbumHistoryLayout from 'layout/AlbumHistoryLayout';
 
 import SignInPage from 'pages/SignInPage/SignInPage';
 
@@ -71,6 +72,16 @@ function App() {
               <Route path="/main" element={<Main />} />
             </Route>
 
+            <Route element={<AlbumHistoryLayout />}>
+              {/* 사진첩 */}
+              <Route path="/album" element={<AlbumPage />} />
+              <Route path="/album/:id" element={<AlbumDetailPage />} />
+
+              {/* 히스토리(프로젝트) 페이지 */}
+              <Route path="/history" element={<HistoryPage />} />
+              <Route path="/hothistory" element={<HotHistoryPage />} />
+            </Route>
+
             <Route element={<BasicLayout />}>
               <Route path="/notice/:category" element={<NoticePage />} />
 
@@ -119,16 +130,8 @@ function App() {
               {/* TodoList */}
               <Route path="/todolist" element={<TodoList />} />
 
-              {/* 사진첩 */}
-              <Route path="/album" element={<AlbumPage />} />
-              <Route path="/album/:id" element={<AlbumDetailPage />} />
-
               {/* 프로필 설정 페이지 */}
               <Route path="/profilesetting" element={<ProfileSettingPage />} />
-
-              {/* 히스토리(프로젝트) 페이지 */}
-              <Route path="/history" element={<HistoryPage />} />
-              <Route path="/hothistory" element={<HotHistoryPage />} />
 
               {/* 마스코트 키우기 페이지 */}
               <Route path="/mascot" element={<MascotPage />} />

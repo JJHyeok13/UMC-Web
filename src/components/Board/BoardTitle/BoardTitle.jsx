@@ -68,9 +68,8 @@ const BoardTitle = () => {
 
   return (
     <styles.BoardTitleContainer>
-      <div className="board-title-icon">
-        <img src={categoryInfo.image} alt={`${category}-icon`} />
-      </div>
+      <img src={categoryInfo.image} alt={`${category}-icon`} />
+
       <styles.BoardTitleWrapper>
         <styles.BoardTitle>{board.title}</styles.BoardTitle>
         <styles.BoardSubTitle>{board.subtitle}</styles.BoardSubTitle>

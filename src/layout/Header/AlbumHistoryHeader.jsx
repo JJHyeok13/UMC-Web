@@ -4,11 +4,12 @@ import styled from 'styled-components';
 import LeftContainer from 'components/Header/LeftContainer';
 import RightContainer from 'components/Header/RightContainer';
 
-import LargeHeaderImage from 'assets/Header/LargeHeader.svg';
+import LargeHeaderImage from 'assets/Header/AlbumHistoryHeader.svg';
 import SmallHeaderImage from 'assets/Header/SmallHeader.png';
 import HamburgerMenuBtnImage from 'assets/Header/HamburgerOpenButton.svg';
 
 import HamburgerMenu from './Hamburgermenu';
+import Data from 'components/Data/Data';
 
 const HeaderWrapper = styled.div`
   background: url(${LargeHeaderImage}) no-repeat center center;
@@ -16,7 +17,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   height: ${(props) => (props.scrolled ? 'auto' : '100vh')};
   position: fixed;
@@ -74,6 +75,8 @@ const Header = () => {
           <LeftContainer />
           <RightContainer scrolled={isScrolled} />
         </Wrapper>
+
+        {!isScrolled && <Data />}
       </HeaderWrapper>
 
       <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
