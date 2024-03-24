@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import PrevButton from './PrevButton';
 import NextButton from './NextButton';
 
-import CampusIcon from 'assets/signup/Operator/CampusIcon.svg';
-import CenterIcon from 'assets/signup/Operator/CenterIcon.svg';
+import CampusIcon from 'assets/SignUp/Operator/CampusIcon.svg';
+import CenterIcon from 'assets/SignUp/Operator/CenterIcon.svg';
 
 const ButtonWrapper = styled.div`
   display: flex;
