@@ -15,8 +15,8 @@ const HeaderWrapper = styled.div`
   background: url(${LargeHeaderImage}) no-repeat center center;
   background-size: cover;
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
   flex-direction: column;
   width: 100%;
   height: ${(props) => (props.scrolled ? 'auto' : '100vh')};

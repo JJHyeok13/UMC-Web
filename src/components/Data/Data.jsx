@@ -214,39 +214,97 @@ const Description = styled.div`
   }
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 70%;
+`;
+
+const AlbumContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 70px;
+`;
+
+const ItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+`;
+
+const AlbumImage = styled.img`
+  width: 320px;
+  height: 320px;
+
+  border-radius: 50%;
+  border: 10px solid white;
+
+  position: relative;
+`;
+
+const DescriptionWrapper = styled.div`
+  border-radius: 10px;
+  background-color: white;
+
+  width: 90%;
+  position: absolute;
+  bottom: 0;
+`;
+
+const AlbumTitle = styled.div`
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px;
+`;
+
+const AlbumTime = styled.div`
+  text-align: center;
+
+  color: gray;
+  font-size: 12px;
+  padding: 5px;
+`;
+
 const Data = () => {
   const location = useLocation();
   const [data, setData] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
 
   useEffect(() => {
-    if (location.pathname === '/history') {
+    const interval = setInterval(() => {
+      setStartIndex((prevIndex) => (prevIndex + 1) % (data.length - 3));
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (location.pathname === '/history') {
+    useEffect(() => {
       const getHotProject = async () => {
         try {
           const res = await axiosInstance.get(`/projects/hot`, {
             params: {
               page: 0,
-              size: 5,
+              size: 10,
             },
           });
           setData(res.data.result.projects);
-
-          console.log(data);
         } catch (error) {
           console.log(error);
         }
       };
 
       getHotProject();
-    } else if (location.pathname === '/album') {
-      setData(null);
-    }
-  }, [location]);
+    });
 
-  return (
-    <>
-      <Container>
-        {data.map((da) => (
-          <>
+    return (
+      <>
+        <Container>
+          {data.slice(startIndex, startIndex + 4).map((da) => (
             <Project key={da.projectId}>
               <TotalWrapper backgroundColor={getBackgroundColor(da.semester)}>
                 <HistoryItem>
@@ -288,11 +346,50 @@ const Data = () => {
                 </HistoryItem>
               </TotalWrapper>
             </Project>
-          </>
-        ))}
-      </Container>
-    </>
-  );
+          ))}
+        </Container>
+      </>
+    );
+  } else if (location.pathname === '/album') {
+    useEffect(() => {
+      const getMainAlbums = async () => {
+        try {
+          const res = await axiosInstance.get(`/albums/featured`, {
+            params: {
+              page: 0,
+            },
+          });
+          setData(res.data.result.albumPageResponses);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      getMainAlbums();
+    });
+
+    return (
+      <>
+        <Wrapper>
+          <h1 style={{ color: 'white', textAlign: 'center' }}>
+            우리 학교 사진첩
+          </h1>
+          <AlbumContainer>
+            {data.slice(startIndex, startIndex + 3).map((da) => (
+              <ItemWrapper key={da.albumId}>
+                <AlbumImage src={da.thumbnail} />
+
+                <DescriptionWrapper>
+                  <AlbumTitle>{da.title}</AlbumTitle>
+                  <AlbumTime>{da.createdAt}</AlbumTime>
+                </DescriptionWrapper>
+              </ItemWrapper>
+            ))}
+          </AlbumContainer>
+        </Wrapper>
+      </>
+    );
+  }
 };
 
 export default Data;

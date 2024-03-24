@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
-//import SearchBar from './BoardSearch';
+import SearchBar from './BoardSearch';
 import Row from './Row';
 
 const TotalWrapper = styled.div`
@@ -66,12 +66,12 @@ const NoticePinButton = styled.div`
   border-radius: 5px;
 `;
 
-// // 검색창 레이아웃 스타일링
-// const BoardSearchLayout = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
+// 검색창 레이아웃 스타일링
+const BoardSearchLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const PageButtonWrapper = styled.div`
   display: flex;
@@ -96,7 +96,7 @@ const NoticeList = ({
   page,
   pageNumbers,
   handlePageChange,
-  //handleKeyword,
+  handleKeyword,
   SetPinned,
 }) => {
   return (
@@ -110,10 +110,6 @@ const NoticeList = ({
       </Container>
 
       <Row noticeData={noticeData} SetPinned={SetPinned} />
-
-      {/* <BoardWriteButtonLayout>
-        <BoardWriteButton />
-      </BoardWriteButtonLayout> */}
 
       <BoardWriteButtonLayout>
         <NoticePinButton>등록</NoticePinButton>
@@ -132,9 +128,9 @@ const NoticeList = ({
         ))}
       </PageButtonWrapper>
 
-      {/* <BoardSearchLayout>
+      <BoardSearchLayout>
         <SearchBar handleKeyword={handleKeyword} />
-      </BoardSearchLayout> */}
+      </BoardSearchLayout>
     </TotalWrapper>
   );
 };

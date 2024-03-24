@@ -76,10 +76,23 @@ const Management = () => {
         `/staff/boards/notices/${boardId}/pin`,
         {
           params: {
-            isPinned: !isPinned,
+            fixed: !isPinned,
           },
         },
       );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const searchChallenger = async () => {
+    try {
+      const res = await axiosInstance.get(`/staff/members/search`, {
+        params: {
+          keyword: keyword,
+        },
+      });
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -105,9 +118,11 @@ const Management = () => {
           page={page}
           pageNumbers={pageNumbers}
           handlePageChange={handlePageChange}
+          keyword={keyword}
           handleKeyword={handleKeyword}
           buttonStates={buttonStates}
           SetPinned={SetPinned}
+          searchChallenger={searchChallenger}
         />
       </styles.AdminManagementWrapper>
     </div>

@@ -73,6 +73,7 @@ const Row = ({ noticeData, SetPinned }) => {
       ) {
         // isPinned 값은 isChecked의 반대로 설정합니다.
         const isPinned = !isChecked;
+        // 'isPinned'이 서버에 요청에 포함되어 있는지 확인하십시오.
         SetPinned(boardId, isPinned);
       }
     });

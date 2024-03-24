@@ -75,7 +75,6 @@ function App() {
             <Route element={<AlbumHistoryLayout />}>
               {/* 사진첩 */}
               <Route path="/album" element={<AlbumPage />} />
-              <Route path="/album/:id" element={<AlbumDetailPage />} />
 
               {/* 히스토리(프로젝트) 페이지 */}
               <Route path="/history" element={<HistoryPage />} />
@@ -84,6 +83,8 @@ function App() {
 
             <Route element={<BasicLayout />}>
               <Route path="/notice/:category" element={<NoticePage />} />
+
+              <Route path="/album/:id" element={<AlbumDetailPage />} />
 
               {/* 게시판 관련 페이지*/}
               <Route

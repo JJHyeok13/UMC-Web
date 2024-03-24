@@ -1,12 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import BoardTitle from 'components/Board/BoardWrite/BoardTitle.jsx';
-import BoardText from 'components/Board/BoardWrite/BoardText.jsx';
-
 import ManagementButton from 'components/Management/NoticePin/Button.jsx';
-import StartendDate from 'components/Management/AddSchedule/StartendDate.jsx';
-import Local from 'components/Management/AddSchedule/SelectLocal.jsx';
 import Classify from 'components/Management/AddSchedule/Classify.jsx';
 
 import SearchChallenger from './ChangeChallenger/SearchChallenger.jsx';
@@ -15,10 +10,7 @@ import ChallengerPosition from './ChangeChallenger/ChallengerPosition.jsx';
 import styled from 'styled-components';
 
 import NoticeList from './NoticePin/NoticeList.jsx';
-
-const Container = styled.div`
-  width: 100%;
-`;
+import Input from './AddSchedule/Input.jsx';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -36,17 +28,26 @@ const ButtonContainerChallenger = styled.div`
   margin-left: 16px;
 `;
 
+const ChallengerContainer = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+`;
+
 const TypeComponent = ({
   noticeData,
   page,
   pageNumbers,
   handlePageChange,
+  keyword,
   handleKeyword,
   buttonStates,
   SetPinned,
+  searchChallenger,
 }) => {
   return (
-    <Container>
+    <>
       {buttonStates.setnoticeButton && (
         <>
           <NoticeList
@@ -62,10 +63,7 @@ const TypeComponent = ({
 
       {buttonStates.calenderButton && (
         <>
-          <BoardTitle />
-          <BoardText />
-          <StartendDate />
-          <Local />
+          <Input />
           <Classify />
           <ButtonContainer>
             <ManagementButton />
@@ -73,16 +71,20 @@ const TypeComponent = ({
         </>
       )}
       {buttonStates.challengerButton && (
-        <>
-          <SearchChallenger handleKeyword={handleKeyword} />
+        <ChallengerContainer>
+          <SearchChallenger
+            keyword={keyword}
+            handleKeyword={handleKeyword}
+            searchChallenger={searchChallenger}
+          />
           <ChallengerPosition />
           <ChallengerType />
           <ButtonContainerChallenger>
             <ManagementButton />
           </ButtonContainerChallenger>
-        </>
+        </ChallengerContainer>
       )}
-    </Container>
+    </>
   );
 };
 
@@ -91,7 +93,9 @@ TypeComponent.propTypes = {
   page: PropTypes.number.isRequired,
   pageNumbers: PropTypes.array.isRequired,
   handlePageChange: PropTypes.func.isRequired,
+  keyword: PropTypes.string.isRequired,
   handleKeyword: PropTypes.func.isRequired,
+  searchChallenger: PropTypes.func.isRequired,
 
   buttonStates: PropTypes.shape({
     setnoticeButton: PropTypes.bool,

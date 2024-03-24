@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import ViewIcon from 'assets/Album/View.svg';
+import { useNavigate } from 'react-router-dom';
 
 // 갤러리 리스트 컴포넌트 전체 컨테이너 스타일링
 const GalleryListContainer = styled.div`
@@ -170,11 +171,20 @@ const GalleryComponent = ({
   pageNumbers,
   handlePageChange,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (albumId) => {
+    navigate(`/album/${albumId}`);
+  };
+
   return (
     <>
       <GalleryListContainer>
         {albumData.map((data) => (
-          <GalleryItem key={data.albumId}>
+          <GalleryItem
+            key={data.albumId}
+            onClick={() => handleClick(data.albumId)}
+          >
             <GalleryItemImg src={data.thumbnail} />
             <GalleryItemViewCountWrapper>
               <GalleryItemView>
@@ -187,7 +197,9 @@ const GalleryComponent = ({
             <GalleryItemInfoWrapper>
               <GalleryItemInfoTitle>{data.title}</GalleryItemInfoTitle>
               <GalleryItemInfoAuthorDateLayout>
-                <GalleryItemInfoAuthor>{data.writer}</GalleryItemInfoAuthor>
+                <GalleryItemInfoAuthor>
+                  {data.writer.writer}
+                </GalleryItemInfoAuthor>
                 <GalleryItemInfoDate>{data.createdAt}</GalleryItemInfoDate>
               </GalleryItemInfoAuthorDateLayout>
             </GalleryItemInfoWrapper>

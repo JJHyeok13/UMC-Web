@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { album_data } from '../GalleryData';
+import BasicProfileImage from 'assets/Profile/ProfileImage.svg';
 
 // 갤러리 상세 정보 프로필 컨테이너 스타일링
 const GalleryDetailProfileContainer = styled.div`
@@ -57,25 +57,22 @@ const GalleryDetailProfileAuthorPosition = styled.div`
 `;
 
 // 갤러리 상세 정보 프로필
-// id: 갤러리 아이디
-const GalleryDetailProfile = ({ id }) => {
-  // 갤러리 데이터에서 id에 해당하는 데이터 찾아옴
-  const item = album_data.find((item) => item.id === Number(id));
-
-  // id에 해당하는 데이터가 없을 경우, 존재하지 않는 갤러리임을 알림
-  if (!item) {
-    return <div>존재하지 않는 갤러리입니다.</div>;
-  }
-
+const GalleryDetailProfile = ({ writerData }) => {
   return (
     <GalleryDetailProfileContainer>
-      <GalleryDetailProfileImg src={item.author.profile} alt="profile" />
+      <GalleryDetailProfileImg
+        src={
+          writerData.profileImage ? writerData.profileImage : BasicProfileImage
+        }
+        alt="프로필 사진"
+      />
+
       <GalleryDetailProfileAuthorWrapper>
         <GalleryDetailProfileAuthorName>
-          {item.author.name}
+          {writerData.writer}
         </GalleryDetailProfileAuthorName>
         <GalleryDetailProfileAuthorPosition>
-          {item.author.position}
+          {writerData.position}
         </GalleryDetailProfileAuthorPosition>
       </GalleryDetailProfileAuthorWrapper>
     </GalleryDetailProfileContainer>
@@ -84,7 +81,7 @@ const GalleryDetailProfile = ({ id }) => {
 
 // 갤러리 상세 정보 프로필 컴포넌트 props 검사
 GalleryDetailProfile.propTypes = {
-  id: PropTypes.string.isRequired,
+  writerData: PropTypes.array.isRequired,
 };
 
 export default GalleryDetailProfile;

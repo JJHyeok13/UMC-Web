@@ -14,15 +14,14 @@ const ChallengerTypeContainer = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  width: 70%;
+  width: 100%;
   border-radius: 12px;
   font-size: 16px;
   font-weight: 500;
   padding: 16px;
   margin-top: 16px;
   background-color: #fff;
-
-  border: 1px solid #232a6d;
+  box-sizing: border-box;
 `;
 
 const DropdownBox = styled.select`
