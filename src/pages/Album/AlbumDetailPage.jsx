@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import GalleryListButton from 'components/Album/GalleryDetail/GalleryListButton';
+import GalleryListButton from 'components/Album/AlbumDetail/AlbumListButton';
 import axiosInstance from 'apis/setting';
-import GalleryDetailProfile from 'components/Album/GalleryDetail/GalleryDetailProfile';
+import GalleryDetailProfile from 'components/Album/AlbumDetail/AlbumDetailProfile';
 
 // 갤러리 상세 페이지 컨테이너
 const GalleryDetailPageContainer = styled.div`

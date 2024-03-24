@@ -5,8 +5,8 @@ import axiosInstance from 'apis/setting';
 //import { total_Pages, album_data } from 'components/Album/GalleryData';
 
 import AlbumTitle from 'components/Album/AlbumTitle/GalleryTitle';
-import AlbumWriteButton from 'components/Album/GalleryWriteButton';
-import AlbumList from 'components/Album/GalleryList';
+import AlbumWriteButton from 'components/Album/AlbumWriteButton';
+import AlbumList from 'components/Album/AlbumList';
 
 import styles from './styles';
 
