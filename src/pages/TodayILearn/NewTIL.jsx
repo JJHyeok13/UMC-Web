@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { addTodayILearned } from 'apis/TodayILearned/todayilearned';
 import styled from 'styled-components';
 
-import BoardFile from 'components/BoardWrite/BoardFile';
+import BoardFile from 'components/Board/BoardWrite/BoardFile';
 //import NotionLink from 'components/TodayILearn/Notion';
 
 import OptionTIL from 'components/TodayILearn/OptionTIL';

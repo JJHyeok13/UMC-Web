@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from 'apis/setting';
 import styles from './style';
+
 import MainDescription from 'components/Main/MainDescription';
 
 import MyCalendar from 'components/Main/Calendar/calendar';
@@ -452,6 +453,10 @@ const Main = () => {
                 <SchoolRanker inUniversityRankData={inUniversityRankData} />
               </styles.SchoolRank>
             </styles.RankingWrapper>
+          </styles.Wrapper>
+
+          <styles.Wrapper>
+            <div>친구</div>
           </styles.Wrapper>
         </styles.MainWrapper>
       </styles.Background>

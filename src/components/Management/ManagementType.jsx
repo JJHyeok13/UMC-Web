@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import setnoticeUnchecked from 'assets/Management/SetNoticeUnchecked.svg';
 import setnoticeChecked from 'assets/Management/SetNoticeChecked.svg';
@@ -26,48 +25,58 @@ const ManagementLink = styled(Link)`
   padding: 0 15px;
 `;
 
-const ManagementType = ({ buttonStates, handleClick }) => {
+const ManagementType = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const goToNotice = () => {
+    navigate('/management/notice');
+  };
+
+  const goToCalendar = () => {
+    navigate('/management/calendar');
+  };
+
+  const goToChallenger = () => {
+    navigate('/management/challenger');
+  };
+
   return (
     <ManagmentContainer>
-      <ManagementLink
-        to="/management/notice"
-        onClick={() => handleClick('setnoticeButton')}
-      >
-        {buttonStates.setnoticeButton ? (
-          <img src={setnoticeChecked} alt="활성 이미지" />
-        ) : (
-          <img src={setnoticeUnchecked} alt="비활성 이미지" />
-        )}
+      <ManagementLink to="/management/notice" onClick={goToNotice}>
+        <img
+          src={
+            location.pathname === '/management/notice'
+              ? setnoticeChecked
+              : setnoticeUnchecked
+          }
+          alt="버튼 이미지"
+        />
       </ManagementLink>
 
-      <ManagementLink
-        to="/management/calendar"
-        onClick={() => handleClick('calenderButton')}
-      >
-        {buttonStates.calenderButton ? (
-          <img src={calenderChecked} alt="활성 이미지" />
-        ) : (
-          <img src={calenderUnchecked} alt="비활성 이미지" />
-        )}
+      <ManagementLink to="/management/calendar" onClick={goToCalendar}>
+        <img
+          src={
+            location.pathname === '/management/calendar'
+              ? calenderChecked
+              : calenderUnchecked
+          }
+          alt="버튼 이미지"
+        />
       </ManagementLink>
 
-      <ManagementLink
-        to="/management/challenger"
-        onClick={() => handleClick('challengerButton')}
-      >
-        {buttonStates.challengerButton ? (
-          <img src={challengerChecked} alt="활성 이미지" />
-        ) : (
-          <img src={challengerUnchecked} alt="비활성 이미지" />
-        )}
+      <ManagementLink to="/management/challenger" onClick={goToChallenger}>
+        <img
+          src={
+            location.pathname === '/management/challenger'
+              ? challengerChecked
+              : challengerUnchecked
+          }
+          alt="버튼 이미지"
+        />
       </ManagementLink>
     </ManagmentContainer>
   );
-};
-
-ManagementType.propTypes = {
-  buttonStates: PropTypes.object.isRequired,
-  handleClick: PropTypes.func.isRequired,
 };
 
 export default ManagementType;

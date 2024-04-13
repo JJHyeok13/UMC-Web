@@ -6,7 +6,7 @@ const styles = {
   `,
 
   MainWrapper: styled.div`
-    margin-top: 27vh;
+    margin-top: 10vh;
   `,
 
   Wrapper: styled.div`

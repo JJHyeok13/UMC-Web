@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import PrevButtonImage from 'assets/signup/PrevButton.svg';
+import PrevButtonImage from 'assets/SignUp/PrevButton.svg';
 
 const Button = styled.img`
   display: flex;

@@ -4,6 +4,7 @@ import 'App.css';
 
 import MainLayout from 'layout/MainLayout';
 import BasicLayout from 'layout/BasicLayout';
+import AlbumHistoryLayout from 'layout/AlbumHistoryLayout';
 
 import SignInPage from 'pages/SignInPage/SignInPage';
 
@@ -17,11 +18,13 @@ import Main from 'pages/Main/Main.jsx';
 import NoticePage from 'pages/Notice/NoticePage';
 
 import BoardPage from 'pages/Board/BoardPage/BoardPage';
-import BoardWrite from 'pages/Board/BoardWrite/BoardWrite';
+import BoardWrite from 'pages/Board/BoardWritePage/BoardWrite';
 import BoardDetailPage from 'pages/Board/DetailPage/BoardDetailPage';
-import ModifyBoard from 'pages/Board/BoardWrite/ModifyBoard';
+import ModifyBoard from 'pages/Board/BoardWritePage/ModifyBoard';
 
-import Management from 'pages/Management/Management';
+import NoticePinPage from 'pages/Management/NoticePin/NoticePinPage';
+import AddSchedulePage from 'pages/Management/AddSchedule/AddSchedulePage';
+import ChangeChallengerPage from 'pages/Management/ChangeChalleger/ChangeChallengerPage';
 
 import MyWrite from 'pages/MyWrite/MyWrite';
 
@@ -34,7 +37,7 @@ import ModifyTIL from 'pages/TodayILearn/ModiftTIL';
 
 import TodoList from 'pages/ToDoList/TodoList';
 
-import AlbumPage from 'pages/Album/AlbumPage';
+import AlbumPage from 'pages/Album/AlbumPage/AlbumPage';
 import AlbumDetailPage from 'pages/Album/AlbumDetailPage';
 
 import ProfileSettingPage from 'pages/Setting/Profile/ProfileSettingPage';
@@ -71,8 +74,19 @@ function App() {
               <Route path="/main" element={<Main />} />
             </Route>
 
+            <Route element={<AlbumHistoryLayout />}>
+              {/* 사진첩 */}
+              <Route path="/album" element={<AlbumPage />} />
+
+              {/* 히스토리(프로젝트) 페이지 */}
+              <Route path="/history" element={<HistoryPage />} />
+              <Route path="/hothistory" element={<HotHistoryPage />} />
+            </Route>
+
             <Route element={<BasicLayout />}>
               <Route path="/notice/:category" element={<NoticePage />} />
+
+              <Route path="/album/:id" element={<AlbumDetailPage />} />
 
               {/* 게시판 관련 페이지*/}
               <Route
@@ -92,9 +106,15 @@ function App() {
               />
 
               {/* 운영진 관리 페이지 */}
-              <Route path="/management/notice" element={<Management />} />
-              <Route path="/management/calendar" element={<Management />} />
-              <Route path="/management/challenger" element={<Management />} />
+              <Route path="/management/notice" element={<NoticePinPage />} />
+              <Route
+                path="/management/calendar"
+                element={<AddSchedulePage />}
+              />
+              <Route
+                path="/management/challenger"
+                element={<ChangeChallengerPage />}
+              />
 
               <Route path="/mywrite" element={<MyWrite />} />
 
@@ -119,16 +139,8 @@ function App() {
               {/* TodoList */}
               <Route path="/todolist" element={<TodoList />} />
 
-              {/* 사진첩 */}
-              <Route path="/album" element={<AlbumPage />} />
-              <Route path="/album/:id" element={<AlbumDetailPage />} />
-
               {/* 프로필 설정 페이지 */}
               <Route path="/profilesetting" element={<ProfileSettingPage />} />
-
-              {/* 히스토리(프로젝트) 페이지 */}
-              <Route path="/history" element={<HistoryPage />} />
-              <Route path="/hothistory" element={<HotHistoryPage />} />
 
               {/* 마스코트 키우기 페이지 */}
               <Route path="/mascot" element={<MascotPage />} />

@@ -1,10 +1,10 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { album_data } from 'components/Gallery/GalleryData';
-import GalleryDetailProfile from 'components/Gallery/GalleryDetail/GalleryDetailProfile';
-import GalleryListButton from 'components/Gallery/GalleryDetail/GalleryListButton';
+import GalleryListButton from 'components/Album/AlbumDetail/AlbumListButton';
+import axiosInstance from 'apis/setting';
+import GalleryDetailProfile from 'components/Album/AlbumDetail/AlbumDetailProfile';
 
 // 갤러리 상세 페이지 컨테이너
 const GalleryDetailPageContainer = styled.div`
@@ -12,22 +12,12 @@ const GalleryDetailPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 75%;
+  width: 70%;
   padding-top: 100px;
   padding-bottom: 100px;
 
   /* 텍스트 스타일링 */
-  font-family: 'Pretendard';
   word-wrap: break-word;
-`;
-
-// 갤러리 상세 페이지 프로필 전체 레이아웃
-const GalleryDetailProfileLayout = styled(GalleryDetailProfile)`
-  /* 레잉아웃 스타일링 */
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding-bottom: 24px;
 `;
 
 // 갤러리 상세 페이지 제목 스타일링
@@ -109,21 +99,35 @@ const AlbumDetailPage = () => {
   // useNavigate: 특정 경로로 이동하는 함수
   const navigate = useNavigate();
 
-  // useParams: URL 파라미터를 조회하는 함수
-  const { id } = useParams();
+  const currentURL = window.location.href;
 
-  // GALLERY_DATAS에서 id가 일치하는 데이터를 조회
-  const item = album_data.find((item) => item.id === Number(id));
+  // /로 구분하여 배열로 저장하고 host 값과 board 값 변수에 저장하기
+  const urlParts = currentURL.split('/');
+  const albumId = urlParts[4];
 
   //  목록 버튼 클릭 시 이벤트
   const handleListButtonClick = () => {
     navigate('/album');
   };
 
-  // id가 일치하는 데이터가 없을 경우
-  if (!item) {
-    return <div>존재하지 않는 갤러리입니다.</div>;
-  }
+  const [detailData, setDetailData] = useState({});
+  const [writerData, setWriterData] = useState({});
+  const [imageList, setImageList] = useState([]);
+
+  useEffect(() => {
+    const getAlbumData = async () => {
+      try {
+        const res = await axiosInstance.get(`/albums/${albumId}`);
+
+        setDetailData(res.data.result);
+        setWriterData(res.data.result.writer);
+        setImageList(res.data.result.albumImages);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAlbumData();
+  }, []);
 
   return (
     <div
@@ -134,20 +138,21 @@ const AlbumDetailPage = () => {
       }}
     >
       <GalleryDetailPageContainer>
-        <GalleryDetailProfileLayout id={item.id} item={item} />
-        <GalleryDetailTitle>{item.title}</GalleryDetailTitle>
+        <GalleryDetailProfile writerData={writerData} />
+
+        <GalleryDetailTitle>{detailData.title}</GalleryDetailTitle>
         <GalleryDetailContentTimeViewWrapper>
-          <GalleryDetailContent>{item.content}</GalleryDetailContent>
+          <GalleryDetailContent>{detailData.content}</GalleryDetailContent>
           <GalleryDetailTimeViewWrapper>
-            <div>작성일 | {item.time}</div>
-            <div>조회수 | {item.view}</div>
+            <div>작성일 | {detailData.createdAt}</div>
+            <div>조회수 | {detailData.hitCount}</div>
           </GalleryDetailTimeViewWrapper>
         </GalleryDetailContentTimeViewWrapper>
         <GalleryDetailImageWrapper>
           {
             // 이미지가 여러 개일 경우, map 함수를 사용하여 이미지를 렌더링
-            item.src.map((src, index) => (
-              <GalleryDetailImage key={index} src={src} alt="gallery" />
+            imageList.map((image, index) => (
+              <GalleryDetailImage key={index} src={image} alt="gallery" />
             ))
           }
         </GalleryDetailImageWrapper>

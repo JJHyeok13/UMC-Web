@@ -3,20 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axiosInstance from 'apis/setting';
 
-import {
-  Modal,
-  ExitButton,
-  ProfileImageWrapper,
-  ProfileImage,
-  ProfileSettingImage,
-  SettingIconWrapper,
-  School,
-  SemesterPart,
-  PartNSemesterWrapper,
-  StatusMessageWrapper,
-  IconWrapper,
-  IconDescription,
-} from './Profile.style';
+import styles from './styles';
 
 import ExitButtonImage from 'assets/Profile/ExitButton.svg';
 import BasicProfileImage from 'assets/Profile/ProfileImage.svg';
@@ -102,44 +89,49 @@ const Profile = ({ setIsModalOpen }) => {
   };
 
   return (
-    <Modal>
-      <ExitButton src={ExitButtonImage} onClick={() => setIsModalOpen(false)} />
+    <styles.Modal>
+      <styles.ExitButton
+        src={ExitButtonImage}
+        onClick={() => setIsModalOpen(false)}
+      />
 
       {profileData && (
         <>
-          <ProfileImageWrapper>
+          <styles.ProfileImageWrapper>
             {profileData.profileImage ? (
-              <ProfileImage src={profileData.profileImage} />
+              <styles.ProfileImage src={profileData.profileImage} />
             ) : (
-              <ProfileImage src={BasicProfileImage} />
+              <styles.ProfileImage src={BasicProfileImage} />
             )}
-            <ProfileSettingImage
+            <styles.ProfileSettingImage
               src={ProfileSettingImageImage}
               onClick={handleProfileSettingClick}
             />
 
-            <School>{profileData.universityName}</School>
-          </ProfileImageWrapper>
+            <styles.School>{profileData.universityName}</styles.School>
+          </styles.ProfileImageWrapper>
 
-          <div>
+          <styles.NameNickname>
             {profileData.nickname}/{profileData.name}
-          </div>
+          </styles.NameNickname>
 
-          <SemesterPart>
-            <PartNSemesterWrapper>
+          <styles.SemesterPart>
+            <styles.PartNSemesterWrapper>
               {profileData.semesterParts.map((parts, index) => (
-                <div key={index}>{renderPartImage(parts.part)}</div>
+                <styles.Part key={index}>
+                  {renderPartImage(parts.part)}
+                </styles.Part>
               ))}
-            </PartNSemesterWrapper>
+            </styles.PartNSemesterWrapper>
 
-            <PartNSemesterWrapper>
+            <styles.PartNSemesterWrapper>
               {profileData.semesterParts.map((semesters, index) => (
                 <div key={index}>{renderSemesterImage(semesters.semester)}</div>
               ))}
-            </PartNSemesterWrapper>
-          </SemesterPart>
+            </styles.PartNSemesterWrapper>
+          </styles.SemesterPart>
 
-          <StatusMessageWrapper>
+          <styles.StatusMessageWrapper>
             <div style={{ fontSize: '12px', marginBottom: '5px' }}>
               상태메세지
             </div>
@@ -150,40 +142,40 @@ const Profile = ({ setIsModalOpen }) => {
             ) : (
               <div>&nbsp;</div>
             )}
-          </StatusMessageWrapper>
+          </styles.StatusMessageWrapper>
 
-          <IconWrapper>
-            <SettingIconWrapper>
+          <styles.IconWrapper>
+            <styles.SettingIconWrapper>
               <Link to="/management/notice">
                 <img src={ManagementIconImage} alt="Management" />
               </Link>
-              <IconDescription> 운영진 관리 </IconDescription>
-            </SettingIconWrapper>
+              <styles.IconDescription> 운영진 관리 </styles.IconDescription>
+            </styles.SettingIconWrapper>
 
-            <SettingIconWrapper>
+            <styles.SettingIconWrapper>
               <Link to="/setting/custom">
                 <img src={SettingIconImage} alt="Setting" />
               </Link>
-              <IconDescription>설정</IconDescription>
-            </SettingIconWrapper>
+              <styles.IconDescription>설정</styles.IconDescription>
+            </styles.SettingIconWrapper>
 
-            <SettingIconWrapper>
+            <styles.SettingIconWrapper>
               <Link to="/notification">
                 <img src={NotificationIconImage} alt="Notification" />
               </Link>
-              <IconDescription> 알림 </IconDescription>
-            </SettingIconWrapper>
+              <styles.IconDescription> 알림 </styles.IconDescription>
+            </styles.SettingIconWrapper>
 
-            <SettingIconWrapper>
+            <styles.SettingIconWrapper>
               <Link to="/friends">
                 <img src={FriendIconImage} alt="Friend" />
               </Link>
-              <IconDescription>친구</IconDescription>
-            </SettingIconWrapper>
-          </IconWrapper>
+              <styles.IconDescription>친구</styles.IconDescription>
+            </styles.SettingIconWrapper>
+          </styles.IconWrapper>
         </>
       )}
-    </Modal>
+    </styles.Modal>
   );
 };
 

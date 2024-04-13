@@ -10,11 +10,7 @@ const SettingTitleContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0 8px;
-  cursor: default;
-
-  /* 폰트 스타일링 */
-  font-family: 'Pretendard';
-  word-wrap: break-word;
+  width: 100%;
 `;
 
 // 설정 제목 아이콘 스타일링

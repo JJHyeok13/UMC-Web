@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styles from './styles';
 
-const GithubImage = styled.img`
-  width: 100%;
-  height: 130px;
-`;
+import useDebounce from 'hooks/useDebounce';
 
 const Github = ({ githubID }) => {
-  const URL = `https://ghchart.rshah.org/2965FF/${githubID}`;
+  const debouncedGithubID = useDebounce(githubID, 1000);
+  const URL = `https://ghchart.rshah.org/2965FF/${debouncedGithubID}`;
 
   return (
     <div>
-      <GithubImage src={URL} alt={`${githubID}'s GitHub contribution chart`} />
+      <styles.GithubImage
+        src={URL}
+        alt={`${debouncedGithubID}'s GitHub contribution chart`}
+      />
     </div>
   );
 };

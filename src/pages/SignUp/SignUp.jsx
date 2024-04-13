@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axiosInstance from 'apis/setting';
-import NocontentsBackgroundImage from 'assets/signup/NoContentsBackground.svg';
+import NocontentsBackgroundImage from 'assets/SignUp/NoContentsBackground.svg';
 
 import InviteCode from 'components/SignUp/InviteCode';
 import Operator from 'components/SignUp/Operator';

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import BoardTitle from 'components/BoardTitle/BoardTitle';
+import BoardTitle from 'components/Board/BoardTitle/BoardTitle';
 
 const styles = {
   BoardTitleLayout: styled(BoardTitle)`

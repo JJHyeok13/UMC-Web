@@ -29,7 +29,7 @@ const HeaderWrapper = styled.div`
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 20%;
+  height: 13%;
   justify-content: space-evenly;
   align-items: center;
 `;
