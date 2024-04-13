@@ -18,6 +18,8 @@ const Container = styled.div`
   &:last-of-type {
     border-top: none;
   }
+
+  color: ${({ isPinned }) => (isPinned ? '#8784ff' : 'inherit')};
 `;
 
 // 게시글 정보

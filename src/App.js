@@ -22,7 +22,9 @@ import BoardWrite from 'pages/Board/BoardWritePage/BoardWrite';
 import BoardDetailPage from 'pages/Board/DetailPage/BoardDetailPage';
 import ModifyBoard from 'pages/Board/BoardWritePage/ModifyBoard';
 
-import Management from 'pages/Management/Management';
+import NoticePinPage from 'pages/Management/NoticePin/NoticePinPage';
+import AddSchedulePage from 'pages/Management/AddSchedule/AddSchedulePage';
+import ChangeChallengerPage from 'pages/Management/ChangeChalleger/ChangeChallengerPage';
 
 import MyWrite from 'pages/MyWrite/MyWrite';
 
@@ -104,9 +106,15 @@ function App() {
               />
 
               {/* 운영진 관리 페이지 */}
-              <Route path="/management/notice" element={<Management />} />
-              <Route path="/management/calendar" element={<Management />} />
-              <Route path="/management/challenger" element={<Management />} />
+              <Route path="/management/notice" element={<NoticePinPage />} />
+              <Route
+                path="/management/calendar"
+                element={<AddSchedulePage />}
+              />
+              <Route
+                path="/management/challenger"
+                element={<ChangeChallengerPage />}
+              />
 
               <Route path="/mywrite" element={<MyWrite />} />
 

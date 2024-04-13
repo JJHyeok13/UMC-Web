@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import styled from 'styled-components';
 
 const ClassifyContainer = styled.div`
   display: flex;
-  width: 120vh;
+  width: 100%;
   flex-direction: column;
   border-radius: 12px;
   padding: 1vh;
   margin-top: 1.6vh;
 
-  border: 1px solid #232a6d;
+  background-color: white;
+
+  box-sizing: border-box;
 `;
 
 //분류 글
@@ -69,15 +73,32 @@ const Circle = styled.div`
   }
 `;
 
-const Classify = () => {
-  const [typeGroup1, setTypeGroup1] = useState(null);
-  const [typeGroup2, setTypeGroup2] = useState(null);
+const Classify = ({
+  //semesterPermission,
+  setSemesterPermission,
+  //hostType,
+  setHostType,
+}) => {
+  const [selectedTypeGroup1, setSelectedTypeGroup1] = useState(null);
+  const [selectedTypeGroup2, setSelectedTypeGroup2] = useState(null);
 
-  const handleTypeClick = (type, group) => {
+  const handleTypeClick = (value, group) => {
     if (group === 1) {
-      setTypeGroup1(typeGroup1 === type ? null : type);
+      setSelectedTypeGroup1(value);
+      if (value === '전체') {
+        setSemesterPermission(['FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH']);
+      } else {
+        setSemesterPermission([value.toUpperCase()]);
+      }
     } else if (group === 2) {
-      setTypeGroup2(typeGroup2 === type ? null : type);
+      setSelectedTypeGroup2(value);
+      if (value === '학교') {
+        setHostType('CAMPUS');
+      } else if (value === '지부') {
+        setHostType('BRANCH');
+      } else if (value === '연합') {
+        setHostType('CENTER');
+      }
     }
   };
 
@@ -88,21 +109,44 @@ const Classify = () => {
       <CheckContainer>
         <CheckType
           onClick={() => handleTypeClick('전체', 1)}
-          isActive={typeGroup1 === '전체'}
+          isActive={selectedTypeGroup1 === '전체'}
         >
-          전체 <Circle isActive={typeGroup1 === '전체'} />
+          전체 <Circle isActive={selectedTypeGroup1 === '전체'} />
         </CheckType>
+
         <CheckType
-          onClick={() => handleTypeClick('이전기수', 1)}
-          isActive={typeGroup1 === '이전기수'}
+          onClick={() => handleTypeClick('1기', 1)}
+          isActive={selectedTypeGroup1 === '1기'}
         >
-          이전기수 <Circle isActive={typeGroup1 === '이전기수'} />
+          1기 <Circle isActive={selectedTypeGroup1 === '1기'} />
         </CheckType>
+
         <CheckType
-          onClick={() => handleTypeClick('현재기수', 1)}
-          isActive={typeGroup1 === '현재기수'}
+          onClick={() => handleTypeClick('2기', 1)}
+          isActive={selectedTypeGroup1 === '2기'}
         >
-          현재기수 <Circle isActive={typeGroup1 === '현재기수'} />
+          2기 <Circle isActive={selectedTypeGroup1 === '2기'} />
+        </CheckType>
+
+        <CheckType
+          onClick={() => handleTypeClick('3기', 1)}
+          isActive={selectedTypeGroup1 === '3기'}
+        >
+          3기 <Circle isActive={selectedTypeGroup1 === '3기'} />
+        </CheckType>
+
+        <CheckType
+          onClick={() => handleTypeClick('4기', 1)}
+          isActive={selectedTypeGroup1 === '4기'}
+        >
+          4기 <Circle isActive={selectedTypeGroup1 === '4기'} />
+        </CheckType>
+
+        <CheckType
+          onClick={() => handleTypeClick('5기', 1)}
+          isActive={selectedTypeGroup1 === '5기'}
+        >
+          5기 <Circle isActive={selectedTypeGroup1 === '5기'} />
         </CheckType>
       </CheckContainer>
 
@@ -111,25 +155,32 @@ const Classify = () => {
       <CheckContainer>
         <CheckType
           onClick={() => handleTypeClick('학교', 2)}
-          isActive={typeGroup2 === '학교'}
+          isActive={selectedTypeGroup2 === '학교'}
         >
-          학교 <Circle isActive={typeGroup2 === '학교'} />
+          학교 <Circle isActive={selectedTypeGroup2 === '학교'} />
         </CheckType>
         <CheckType
           onClick={() => handleTypeClick('지부', 2)}
-          isActive={typeGroup2 === '지부'}
+          isActive={selectedTypeGroup2 === '지부'}
         >
-          지부 <Circle isActive={typeGroup2 === '지부'} />
+          지부 <Circle isActive={selectedTypeGroup2 === '지부'} />
         </CheckType>
         <CheckType
           onClick={() => handleTypeClick('연합', 2)}
-          isActive={typeGroup2 === '연합'}
+          isActive={selectedTypeGroup2 === '연합'}
         >
-          연합 <Circle isActive={typeGroup2 === '연합'} />
+          연합 <Circle isActive={selectedTypeGroup2 === '연합'} />
         </CheckType>
       </CheckContainer>
     </ClassifyContainer>
   );
+};
+
+Classify.propTypes = {
+  //semesterPermission: PropTypes.array.isRequired,
+  setSemesterPermission: PropTypes.func.isRequired,
+  //hostType: PropTypes.string.isRequired,
+  setHostType: PropTypes.func.isRequired,
 };
 
 export default Classify;

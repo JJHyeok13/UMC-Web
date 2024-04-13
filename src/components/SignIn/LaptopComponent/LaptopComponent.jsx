@@ -13,14 +13,13 @@ const LaptopComponent = ({ KakaoLoginURL, NaverLoginURL }) => {
           <styles.LoginButtonImage src={KakaoLoginImage} />
         </styles.Button>
 
-        <styles.Button href={NaverLoginURL}>
-          <styles.LoginButtonImage src={NaverLoginImage} />
-        </styles.Button>
-
         <styles.Button>
           <div style={{ color: 'white' }}>
-            구글 로그인은 현재 제한된 기능입니다.
+            네이버, 구글 로그인은 현재 제한된 기능입니다.
           </div>
+          <styles.Button href={NaverLoginURL}>
+            <styles.LoginButtonImage src={NaverLoginImage} />
+          </styles.Button>
           <styles.LoginButtonImage src={GoogleLoginImage} />
         </styles.Button>
       </styles.ButtonWrapper>

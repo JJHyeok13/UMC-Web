@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
@@ -43,19 +43,53 @@ const SearchButton = styled.div`
   cursor: pointer;
 `;
 
-const SearchChallenger = ({ keyword, handleKeyword, searchChallenger }) => {
+const ChallengerContainer = styled.div`
+  padding: 10px;
+`;
+
+const SearchChallenger = ({
+  keyword,
+  handleKeyword,
+  searchChallenger,
+  challengerData,
+  handleChallengerClick,
+}) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    searchChallenger();
+    setIsClicked(true);
+  };
+
   return (
-    <SearchContainer>
-      <Search>
-        <img src={SearchImg} alt="돋보기 아이콘" style={{ padding: '5px' }} />
-        <SearchInput
-          placeholder="정보를 변경할 챌랜저의 '닉네임/이름'을 입력해주세요(EX. 리버/이경수)"
-          onChange={handleKeyword}
-          value={keyword}
-        />
-      </Search>
-      <SearchButton onClick={searchChallenger}>검색</SearchButton>
-    </SearchContainer>
+    <>
+      <SearchContainer>
+        <Search>
+          <img src={SearchImg} alt="돋보기 아이콘" style={{ padding: '5px' }} />
+          <SearchInput
+            placeholder="정보를 변경할 챌랜저의 '닉네임/이름'을 입력해주세요(EX. 리버/이경수)"
+            onChange={handleKeyword}
+            value={keyword}
+          />
+        </Search>
+        <SearchButton onClick={handleClick}>검색</SearchButton>
+      </SearchContainer>
+
+      {isClicked && (
+        <div>
+          {challengerData.map((data) => (
+            <ChallengerContainer
+              key={data.memberId}
+              onClick={handleChallengerClick}
+            >
+              <div>
+                {data.universityName} {keyword}
+              </div>
+            </ChallengerContainer>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
@@ -63,6 +97,8 @@ SearchChallenger.propTypes = {
   keyword: PropTypes.string.isRequired,
   handleKeyword: PropTypes.func.isRequired,
   searchChallenger: PropTypes.func.isRequired,
+  challengerData: PropTypes.array.isRequired,
+  handleChallengerClick: PropTypes.func.isRequired,
 };
 
 export default SearchChallenger;

@@ -7,16 +7,17 @@ import SettingContents from 'components/Setting/SettingContents';
 
 // 설정 페이지 컨테이너
 const SettingPageContainer = styled.div`
+  width: 70%;
+  // 가운데 정렬
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
-  margin: 13vh auto 12.5vh auto;
-  gap: 40px;
-  width: 70%;
-`;
 
-const SettingPageTitleLayout = styled(SettingTitle)`
-  display: flex;
-  flex-direction: row;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  min-height: 100vh;
 `;
 
 // 설정 메뉴 & 컨텐츠 감싸는 레이아웃
@@ -24,26 +25,18 @@ const SettingMenuContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0 114px;
+  width: 100%;
 `;
 
 const SettingPage = () => {
   return (
-    <div
-      className="board-page"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <SettingPageContainer>
-        <SettingPageTitleLayout>설정</SettingPageTitleLayout>
-        <SettingMenuContentWrapper>
-          <SettingMenu />
-          <SettingContents />
-        </SettingMenuContentWrapper>
-      </SettingPageContainer>
-    </div>
+    <SettingPageContainer>
+      <SettingTitle />
+      <SettingMenuContentWrapper>
+        <SettingMenu />
+        <SettingContents />
+      </SettingMenuContentWrapper>
+    </SettingPageContainer>
   );
 };
 

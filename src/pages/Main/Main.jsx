@@ -454,6 +454,10 @@ const Main = () => {
               </styles.SchoolRank>
             </styles.RankingWrapper>
           </styles.Wrapper>
+
+          <styles.Wrapper>
+            <div>친구</div>
+          </styles.Wrapper>
         </styles.MainWrapper>
       </styles.Background>
     </div>
